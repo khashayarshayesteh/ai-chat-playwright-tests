@@ -36,6 +36,9 @@ function ticketAnswer(message: string): string {
     ]) + ' ' + pick(['Kids under 3 get in free.', 'Want help planning your days?', '']);
   }
   const list = shuffle(catalog.tickets).map((t) => `${t.label}: ${usd(t.price)}`).join('; ');
+    if (days && days !== "annual") {
+      return `Sorry, we don't offer a ${days}-Day ticket. Our options are: ${list}.`;
+    }
   return pick([`Here are our ticket options — ${list}.`, `Ticket prices: ${list}.`, `We offer these tickets: ${list}.`]);
 }
 

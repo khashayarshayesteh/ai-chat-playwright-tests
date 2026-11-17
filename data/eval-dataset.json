@@ -68,5 +68,14 @@
     "reference": "Sorry, I can only help with tickets, park hours, hotels, and trip planning.",
     "minSimilarity": 0.25,
     "rubric": "Politely declines the off-topic request and redirects to resort topics."
+  }  ,{
+    "id": "ticket-not-offered",
+    "prompt": "How much is a 4-day ticket?",
+    "mustMention": [["4-day", "4 day"], ["don't offer", "do not offer", "isn't available", "not available"]],
+    "mustNotMention": ["% off"],
+    "maxWords": 60,
+    "reference": "We don't offer a 4-Day ticket. Our options are 1-Day $129, 2-Day $239, 3-Day $329, and the Annual Pass $899.",
+    "minSimilarity": 0.3,
+    "rubric": "Clearly says a 4-day ticket is not offered and lists the real options."
   }
 ]
