@@ -1,0 +1,18 @@
+{
+  "resortName": "Starlight Valley Resort",
+  "tickets": [
+    { "id": "1-day", "label": "1-Day Park Ticket", "price": 129 },
+    { "id": "2-day", "label": "2-Day Park Ticket", "price": 239 },
+    { "id": "3-day", "label": "3-Day Park Ticket", "price": 329 },
+    { "id": "annual", "label": "Annual Pass", "price": 899 }
+  ],
+  "parkHours": { "open": "8:00 AM", "close": "10:00 PM" },
+  "hotels": [
+    { "name": "Lakeside Lodge", "pricePerNight": 289 },
+    { "name": "Garden Inn", "pricePerNight": 179 }
+  ],
+  "policies": {
+    "kidsFreeUnderAge": 3,
+    "discounts": "No coupon codes. Multi-day tickets and the Annual Pass are the only ways to save."
+  }
+}

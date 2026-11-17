@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Starlight Valley — Trip Assistant</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="card chat">
+    <h1>Trip Assistant</h1>
+    <ul class="messages" data-testid="messages" aria-live="polite"></ul>
+    <p class="typing" data-testid="typing" hidden>Assistant is typing…</p>
+    <p class="error" data-testid="chat-error" hidden>Sorry, something went wrong. Please try again.</p>
+    <form id="chat-form">
+      <input data-testid="chat-input" placeholder="Ask about tickets, hours, hotels…" autocomplete="off" />
+      <button type="submit" data-testid="send-button">Send</button>
+    </form>
+  </main>
+  <script>
+    const list = document.querySelector('[data-testid="messages"]');
+    const input = document.querySelector('[data-testid="chat-input"]');
+    const button = document.querySelector('[data-testid="send-button"]');
+    const typing = document.querySelector('[data-testid="typing"]');
+    const error = document.querySelector('[data-testid="chat-error"]');
+
+    const addMessage = (text, who) => {
+      const li = document.createElement('li');
+      li.className = who;
+      li.dataset.testid = who === 'user' ? 'user-message' : 'bot-message';
+      li.textContent = text;
+      list.appendChild(li);
+    };
+
+    document.getElementById('chat-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const message = input.value.trim();
+      if (!message) return;
+      addMessage(message, 'user');
+      input.value = '';
+      input.disabled = button.disabled = true;
+      error.hidden = true;
+      typing.hidden = false;
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ message }),
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        addMessage(data.reply, 'bot');
+      } catch {
+        error.hidden = false;
+      } finally {
+        typing.hidden = true;
+        input.disabled = button.disabled = false;
+        input.focus();
+      }
+    });
+  </script>
+</body>
+</html>

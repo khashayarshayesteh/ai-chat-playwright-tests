@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Starlight Valley — Sign in</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="card">
+    <h1>Starlight Valley Resort</h1>
+    <p>Sign in to plan your trip (demo / demo123)</p>
+    <form id="login-form">
+      <label>Username <input name="username" data-testid="username" autocomplete="username" /></label>
+      <label>Password <input name="password" type="password" data-testid="password" autocomplete="current-password" /></label>
+      <button type="submit" data-testid="login-button">Sign in</button>
+      <p class="error" data-testid="login-error" hidden>Invalid username or password.</p>
+    </form>
+  </main>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = new FormData(e.target);
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ username: form.get('username'), password: form.get('password') }),
+      });
+      if (res.ok) location.href = '/';
+      else document.querySelector('[data-testid="login-error"]').hidden = false;
+    });
+  </script>
+</body>
+</html>

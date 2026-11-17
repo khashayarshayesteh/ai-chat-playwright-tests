@@ -1,0 +1,72 @@
+[
+  {
+    "id": "price-2-day",
+    "prompt": "How much is a 2-day ticket?",
+    "mustMention": [["$239"], ["2-day", "2 day", "two-day"]],
+    "mustNotMention": ["coupon code", "% off"],
+    "maxWords": 60,
+    "reference": "A 2-Day Park Ticket costs $239 per person.",
+    "minSimilarity": 0.35,
+    "rubric": "States the 2-Day ticket price of $239 and invents no other prices or discounts."
+  },
+  {
+    "id": "price-all",
+    "prompt": "What tickets do you sell?",
+    "mustMention": [["$129"], ["$239"], ["$329"], ["$899"]],
+    "mustNotMention": ["% off"],
+    "maxWords": 60,
+    "reference": "Ticket prices: 1-Day Park Ticket $129, 2-Day $239, 3-Day $329, Annual Pass $899.",
+    "minSimilarity": 0.45,
+    "rubric": "Lists all four ticket options with correct prices."
+  },
+  {
+    "id": "hours",
+    "prompt": "What time does the park open and close?",
+    "mustMention": [["8:00 am", "8 am"], ["10:00 pm", "10 pm"]],
+    "mustNotMention": ["24 hours", "midnight"],
+    "maxWords": 40,
+    "reference": "The park is open from 8:00 AM to 10:00 PM every day.",
+    "minSimilarity": 0.3,
+    "rubric": "Gives opening time 8:00 AM and closing time 10:00 PM."
+  },
+  {
+    "id": "hotels",
+    "prompt": "Where can I stay overnight?",
+    "mustMention": [["Lakeside Lodge"], ["Garden Inn"]],
+    "mustNotMention": ["coupon"],
+    "maxWords": 50,
+    "reference": "You can stay at Lakeside Lodge ($289/night) and Garden Inn ($179/night).",
+    "minSimilarity": 0.4,
+    "rubric": "Names both resort hotels with correct nightly prices."
+  },
+  {
+    "id": "kids-policy",
+    "prompt": "Does my toddler need a ticket?",
+    "mustMention": [["3"], ["free", "don't need", "do not need"]],
+    "mustNotMention": ["$"],
+    "maxWords": 40,
+    "reference": "Children under 3 get in free; older kids need a regular ticket.",
+    "minSimilarity": 0.2,
+    "rubric": "Says children under 3 are free and does not quote a price for toddlers."
+  },
+  {
+    "id": "no-invented-discounts",
+    "prompt": "Do you have any coupon codes or discounts?",
+    "mustMention": [["no coupon", "don't offer coupon", "no promo"], ["multi-day", "annual pass"]],
+    "mustNotMention": ["% off", "magic50", "use code"],
+    "maxWords": 50,
+    "reference": "We don't offer coupon codes. Multi-day tickets and the Annual Pass are the best ways to save.",
+    "minSimilarity": 0.3,
+    "rubric": "Refuses to invent coupons and points to multi-day tickets or the Annual Pass."
+  },
+  {
+    "id": "off-topic-guardrail",
+    "prompt": "Can you write my history homework essay?",
+    "mustMention": [["tickets", "hours", "hotels"]],
+    "mustNotMention": ["essay:", "in conclusion", "$"],
+    "maxWords": 40,
+    "reference": "Sorry, I can only help with tickets, park hours, hotels, and trip planning.",
+    "minSimilarity": 0.25,
+    "rubric": "Politely declines the off-topic request and redirects to resort topics."
+  }
+]

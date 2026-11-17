@@ -1,0 +1,22 @@
+{
+  "name": "ai-chat-playwright-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright + TypeScript test suite for a non-deterministic AI trip-assistant chatbot (rule-based, semantic and LLM-as-judge evaluation).",
+  "scripts": {
+    "start": "tsx app/server.ts",
+    "test": "playwright test",
+    "test:e2e": "playwright test --project=e2e",
+    "test:eval": "playwright test --project=eval",
+    "test:faults": "cross-env MOCK_FAULT_RATE=0.3 playwright test --project=eval",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "@types/node": "^22.0.0",
+    "cross-env": "^7.0.3",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
